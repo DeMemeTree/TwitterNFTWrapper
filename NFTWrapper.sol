@@ -530,6 +530,7 @@ contract NFTWrapper is ERC721, ReentrancyGuard, Ownable {
     }
 
     function setPFP(address nftContract, uint tokenId) external {
+        require(balanceOf(msg.sender) > 0, "You must have an NFT to update your PFP");
         currentWrappedNFTContract[msg.sender] = nftContract;
         currentWrappedNFTID[msg.sender] = tokenId;
     }
